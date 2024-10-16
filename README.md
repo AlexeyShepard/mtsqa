@@ -19,6 +19,8 @@ source venv/bin/activate # Для Linux и MacOS
 
 pip install -r requirements.txt
 
+playwright install
+
 ```
 
 Все готово для использования!
