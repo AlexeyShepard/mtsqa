@@ -53,6 +53,13 @@ def add_form_data():
         name='Алексей'
     ).model_dump()
 
+@pytest.fixture()
+def failed_form_data():
+    return FormData(
+        number=random_number(),
+        name=''
+    ).model_dump()
+
 @pytest.fixture(scope="session")
 def context_browser(playwright: Playwright) -> Page:
     with allure.step('Создаем экземпляр браузера'):
@@ -102,6 +109,48 @@ class TestLeaveRequestPositive():
         send_data(context_browser)
         expect(context_browser.get_by_text("Заявка отправлена")).to_be_visible()
 
+
+@allure.epic('Оставить заявку на оформление тарифа, c данными которые указаны в базе данных')
+@allure.story('Позитивные тесты')
+class TestLeaveRequestNegative():
+
+    @staticmethod
+    @allure.title('Перейти на страницу https://moskva.mts.ru/personal')
+    def test_go_to_mts_page(context_browser):
+        go_to_homepage(context_browser)
+        expect(context_browser.get_by_text("Пополнение и оплата")).to_be_visible()
+
+    @staticmethod
+    @allure.title('Переходим в раздел тарифов')
+    def test_go_to_tariffs(context_browser):
+        go_to_tariffs(context_browser)
+        expect(context_browser.get_by_text("Тариф №1")).to_be_visible()
+
+    @staticmethod
+    @allure.title('Переход к тарифу №1')
+    def test_go_to_tariff_description(context_browser):
+        go_to_tariff_description(context_browser)
+        expected_result = 'Тариф с мобильной связью, домашним интернетом, ТВ и онлайн-кинотеатром KION'
+        expect(context_browser.get_by_text(expected_result)).to_be_visible()
+
+    @staticmethod
+    @allure.title('Переход к форме заполнения заявки')
+    def test_go_to_connect_the_tariff_form(context_browser):
+        go_to_connect_the_tariff_form(context_browser)
+        expect(context_browser.get_by_text("Заявка на подключение")).to_be_visible()
+
+    @staticmethod
+    @allure.title('Заполнение формы заявки')
+    def test_fill_the_form(context_browser, failed_form_data):
+        fill_the_form(context_browser, failed_form_data)
+        warnings = ["Заполните поле", "Укажите Ваше имя"]
+        expect(context_browser.get_by_text("Заявка на подключение")).not_to_have_text(warnings)
+
+    @staticmethod
+    @allure.title('Отправить заявку')
+    def test_send_the_data(context_browser):
+        send_data(context_browser)
+        expect(context_browser.get_by_text("Заявка отправлена")).to_be_visible()
 
 
 
