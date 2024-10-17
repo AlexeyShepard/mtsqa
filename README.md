@@ -7,7 +7,7 @@
 ### Настройки запуска
 
 Используемая версия интерпретатора: 
-![Python3.12](https://img.shields.io/badge/python-3.12-purple?style=flat&logo=python&link=https%3A%2F%2Fvk.com%2Fgtfo_gtfo_gtfo)
+![Python3.11](https://img.shields.io/badge/python-3.11-purple?style=flat&logo=python&link=https%3A%2F%2Fvk.com%2Fgtfo_gtfo_gtfo)
 
 Для начала работы необходимо ввести в терминал ряд следующих команд:
 

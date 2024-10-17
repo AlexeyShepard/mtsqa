@@ -4,6 +4,8 @@
 
 cd Task2
 
-pytest leave_request.py
+pytest test_leave_request.py
 
 ```
+
+Если первый тест будет падать, то надо изменить номер телефона в фикстуре, видимо такой уже есть в базе.
