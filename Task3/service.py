@@ -12,7 +12,7 @@ async def inverse(data: dict) -> JSONResponse:
 @app.get("/unstable")
 async def unstable() -> JSONResponse:
 
-    responses = [JSONResponse(content="НAPPY", status_code=200),
+    responses = [JSONResponse(content="HAPPY", status_code=200),
                 JSONResponse(content="UNHAPPY", status_code=400)]
 
     response = random.choice(responses)
