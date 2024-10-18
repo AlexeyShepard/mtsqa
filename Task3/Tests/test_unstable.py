@@ -8,16 +8,13 @@ def unstable_url():
 @pytest.fixture
 def unstable_response(unstable_url):
     response = requests.get(unstable_url)
-    return response
+    return response.status_code, response.content.decode('utf-8').strip('"')
 
-@pytest.fixture
-def unstable_response_content(unstable_url):
-    response = requests.get(unstable_url)
-    return response.content.decode('utf-8').strip('"')
 
 class TestUnstable():
-    def test_unstable_get(self, unstable_response, unstable_response_content):
+    def test_unstable_get(self, unstable_response):
+        code, content = unstable_response
 
-        assert 200 == unstable_response.status_code
-        assert "HAPPY" == unstable_response_content
+        assert 200 == code
+        assert "HAPPY" == content
 
