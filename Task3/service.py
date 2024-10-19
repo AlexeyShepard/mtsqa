@@ -7,7 +7,10 @@ app = FastAPI()
 @app.post("/inverse")
 async def inverse(data: dict) -> JSONResponse:
     inverse_data = {v: k for k, v in data.items()}
-    return JSONResponse(content=inverse_data, status_code=200)
+    if not data:
+        return JSONResponse(content=inverse_data, status_code=400)
+    else:
+        return JSONResponse(content=inverse_data, status_code=200)
 
 @app.get("/unstable")
 async def unstable() -> JSONResponse:
