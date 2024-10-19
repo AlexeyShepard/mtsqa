@@ -1,4 +1,6 @@
 import random
+
+# Генерация случайного номера для формы
 def random_number():
         phone_number = '9'
 

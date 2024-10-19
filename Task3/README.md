@@ -2,10 +2,22 @@
 
 ```
 
-cd Task3
+cd Task3 # если находишься в корне проекта
 
-fastapi dev service.py
+uvicorn service:app --host 127.0.0.1 --port 8000
 
 ```
 
-Swagger: http://127.0.0.1:8000/docs 
+Для открытия Swagger: http://127.0.0.1:8000/docs 
+
+В директории Tests находятся все тесты, а также models.py для фикстур
+
+## КАК ЗАПУСТИТЬ ТЕСТЫ?
+
+```
+
+pytest Tests # Если находишься в папке Task3
+
+```
+
+test_unstable.py то падает, то успешно проходит, все зависит от /unstable

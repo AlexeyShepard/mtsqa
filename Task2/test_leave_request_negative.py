@@ -24,6 +24,7 @@ def go_to_connect_the_tariff_form(page):
         page.locator("mts-product-header-connection").get_by_text("Подключить").click()
 
 def fill_the_form(page, add_form_data):
+    # Перед вводом в форму, ждем когда все элементы будут загружены
     page.wait_for_selector('input[placeholder="XXX XXX XX XX"]', state='attached')
     page.wait_for_selector('input#username[placeholder="Ваше имя"]', state='attached')
     with allure.step(f'Заполняем номер телефона, number: {add_form_data["number"]}'):
@@ -34,8 +35,9 @@ def fill_the_form(page, add_form_data):
         page.get_by_role("textbox", name="Ваше имя").fill(add_form_data['name'])
 
 def send_data(page):
-    page.wait_for_selector('div.mm-web-button__text:has-text("Оставить заявку")', state='attached')
-    page.get_by_role("button", name="Оставить заявку").click()
+    with allure.step(f'Отправляем форму'):
+        page.wait_for_selector('div.mm-web-button__text:has-text("Оставить заявку")', state='attached')
+        page.get_by_role("button", name="Оставить заявку").click()
 
 @pytest.fixture()
 def add_form_data():

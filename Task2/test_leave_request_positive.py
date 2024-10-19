@@ -34,8 +34,9 @@ def fill_the_form(page, add_form_data):
         page.get_by_role("textbox", name="Ваше имя").fill(add_form_data['name'])
 
 def send_data(page):
-    page.wait_for_selector('div.mm-web-button__text:has-text("Оставить заявку")', state='attached')
-    page.get_by_role("button", name="Оставить заявку").click()
+    with allure.step(f'Отправляем форму'):
+        page.wait_for_selector('div.mm-web-button__text:has-text("Оставить заявку")', state='attached')
+        page.get_by_role("button", name="Оставить заявку").click()
 
 @pytest.fixture()
 def add_form_data():

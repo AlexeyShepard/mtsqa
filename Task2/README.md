@@ -2,10 +2,8 @@
 
 ```
 
-cd Task2
-
-pytest test_leave_request_positive.py
-
-pytest test_leave_request_negative.py
+pytest Task2
 
 ```
+
+- Примечание: test_leave_request_positive.py очень редко падает, из-за того что форма не заполнятся. Честно, голову сломал, ожидание появления элементов в DOM не помогает, но в 90% случаев тест проходит. 
