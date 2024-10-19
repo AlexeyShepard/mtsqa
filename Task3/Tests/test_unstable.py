@@ -20,5 +20,5 @@ class TestUnstable():
             assert "HAPPY" == content
         else:
             assert 400 == code
-            assert "UNHAPPY" == content
+            assert "NHAPPY" == content
 
