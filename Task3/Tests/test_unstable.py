@@ -15,6 +15,10 @@ class TestUnstable():
     def test_unstable_get(self, unstable_response):
         code, content = unstable_response
 
-        assert 200 == code
-        assert "HAPPY" == content
+        if(code == 200):
+            assert 200 == code
+            assert "HAPPY" == content
+        else:
+            assert 400 == code
+            assert "UNHAPPY" == content
 

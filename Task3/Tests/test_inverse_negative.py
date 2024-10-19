@@ -10,17 +10,17 @@ def inverse_url():
 @pytest.fixture()
 def inverse_data():
     return InverseData(
-        key1=""
+        key1="value1"
     ).model_dump()
 
 @pytest.fixture()
 def inverse_response(inverse_url, inverse_data):
-    response = requests.post(inverse_url, json=inverse_data)
+    response = requests.post(inverse_url, json="")
     return response.status_code, response.json()
 
 class TestInverseNegative():
     def test_inverse_post(self, inverse_response):
         status_code, content = inverse_response
 
-        assert content == {"value1":"key1"}
-        assert status_code == 200
+        assert content != {"value1":"key1"}
+        assert status_code == 422
