@@ -23,4 +23,4 @@ class TestInverseNegative():
         status_code, content = inverse_response
 
         assert content != {"value1":"key1"}
-        assert status_code == 4222
+        assert status_code == 422
