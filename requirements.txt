@@ -4,3 +4,5 @@ pytest-playwright
 allure-pytest
 pydantic
 fastapi[standard]
+uvicorn
+locust
