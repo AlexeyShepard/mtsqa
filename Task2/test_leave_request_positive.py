@@ -53,7 +53,7 @@ def context_browser(playwright: Playwright) -> Page:
         page = context.new_page()
         return page
 
-@allure.epic('Оставить заявку на оформление тарифа')
+@allure.epic('Оставить заявку на оформление тарифа с корректными данными')
 @allure.story('Позитивные тесты')
 class TestLeaveRequestPositive():
     @staticmethod

@@ -54,7 +54,7 @@ def context_browser(playwright: Playwright) -> Page:
         page = context.new_page()
         return page
 
-@allure.epic('Оставить заявку на оформление тарифа')
+@allure.epic('Оставить заявку на оформление тарифа с некорректными данными')
 @allure.story('Позитивные тесты')
 class TestLeaveRequestPositive():
     @staticmethod
@@ -93,7 +93,7 @@ class TestLeaveRequestPositive():
     @allure.title('Отправить заявку')
     def test_send_the_data(context_browser):
         send_data(context_browser)
-        expect(context_browser.get_by_text("Заявка отправлена")).to_be_visible()
+        expect(context_browser.get_by_text("Укажите Ваше имя")).to_be_visible()
 
 
 
