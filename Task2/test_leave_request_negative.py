@@ -1,4 +1,3 @@
-import random
 import pytest
 import allure
 from playwright.sync_api import Playwright, expect, Page
@@ -17,16 +16,19 @@ def go_to_tariffs(page):
 
 def go_to_tariff_description(page):
     with allure.step('Нажать кнопку "Подробнее" на карточке "Тариф №1"'):
+        page.wait_for_selector('div.menu-categories__main-heading:has-text("Тарифы")', state="attached")
         page.locator("[id=\"\\34 704357\"] a").click()
 
 def go_to_connect_the_tariff_form(page):
     with allure.step('Нажать на кнопку "Подключить"'):
+        page.wait_for_selector('div.title:has-text("Тариф №1")', state="attached")
         page.locator("mts-product-header-connection").get_by_text("Подключить").click()
 
 def fill_the_form(page, add_form_data):
     # Перед вводом в форму, ждем когда все элементы будут загружены
     page.wait_for_selector('input[placeholder="XXX XXX XX XX"]', state='attached')
     page.wait_for_selector('input#username[placeholder="Ваше имя"]', state='attached')
+    page.wait_for_selector('div.mm-web-button__text:has-text("Оставить заявку")', state='attached')
     with allure.step(f'Заполняем номер телефона, number: {add_form_data["number"]}'):
         page.get_by_role("textbox", name="XXX XXX XX XX").click()
         page.get_by_role("textbox", name="XXX XXX XX XX").fill(add_form_data['number'])
