@@ -58,7 +58,7 @@ def context_browser(playwright: Playwright) -> Page:
 
 @allure.epic('Оставить заявку на оформление тарифа с некорректными данными')
 @allure.story('Позитивные тесты')
-class TestLeaveRequestPositive():
+class TestLeaveRequestNegative():
     @staticmethod
     @allure.title('Перейти на страницу https://moskva.mts.ru/personal')
     def test_go_to_mts_page(context_browser):
